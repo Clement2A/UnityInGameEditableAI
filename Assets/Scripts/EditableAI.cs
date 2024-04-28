@@ -34,9 +34,16 @@ public class EditableAI : MonoBehaviour
         FsmUiData.AddStatePosition(_position);
     }
 
-    public void AddState(Vector2 _position, Behaviour _behaviour)
+    public State AddState(Vector2 _position, Behaviour _behaviour)
     {
-        Fsm.AddState(_behaviour);
+        State _newState = Fsm.AddState(_behaviour);
         FsmUiData.AddStatePosition(_position);
+        return _newState;
+    }
+
+    public void RemoveState(int _stateIndex)
+    {
+        Fsm.RemoveState(_stateIndex);
+        FsmUiData.RemoveState(_stateIndex);
     }
 }

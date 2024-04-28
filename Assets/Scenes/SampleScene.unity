@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 53923129}
   m_Layer: 5
-  m_Name: StateContainer
+  m_Name: EditableCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -150,7 +150,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2085880232}
+  - {fileID: 330561140}
   m_Father: {fileID: 57249638}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -574,6 +576,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175855543}
   m_CullTransparentMesh: 1
+--- !u!1 &330561139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 330561140}
+  m_Layer: 5
+  m_Name: StateContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &330561140
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330561139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 53923129}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &333452562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,9 +1256,9 @@ Canvas:
   m_GameObject: {fileID: 869443944}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 2123151188}
+  m_PlaneDistance: 0.64
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -1265,14 +1303,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a8f1afa10e315b48a05fd3f589788aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIState: {fileID: 5085026309683156218, guid: ce45597b70e3438429537d6f3ee4b442, type: 3}
+  uiState: {fileID: 5085026309683156218, guid: ce45597b70e3438429537d6f3ee4b442, type: 3}
   quitButton: {fileID: 1217177024}
   addStateButton: {fileID: 175855545}
   startFsmButton: {fileID: 1540643294}
   deleteStateButton: {fileID: 2023610973}
-  stateContainer: {fileID: 53923128}
+  stateContainer: {fileID: 330561139}
+  lineContainer: {fileID: 2085880231}
   aiNameInput: {fileID: 1869019459}
   stateSelectionMenu: {fileID: 7344543486176336045, guid: 8699e4747a4021e4daa7c5d59a2df546, type: 3}
+  transitionUIPrefab: {fileID: 2771088881990674259, guid: 14d46fbfb1cc80048b68c7f81db0d5bf, type: 3}
 --- !u!1 &1217177022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2498,6 +2538,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats: {fileID: 11400000, guid: 4283bcb4372e86e4eb6f83513e6c5981, type: 2}
+--- !u!1 &2085880231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2085880232}
+  m_Layer: 5
+  m_Name: LineContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2085880232
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085880231}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 53923129}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2123151185
 GameObject:
   m_ObjectHideFlags: 0
@@ -2572,7 +2648,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 10
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: 0
   m_CullingMask:

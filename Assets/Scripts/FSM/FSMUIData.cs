@@ -10,4 +10,9 @@ public class FSMUIData
     {
         StatePositions.Add(_position);
     }
+
+    public void RemoveState(int _stateUiStateIndex)
+    {
+        StatePositions.RemoveAt(_stateUiStateIndex);
+    }
 }

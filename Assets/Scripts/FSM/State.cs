@@ -12,7 +12,8 @@ public class State
 
     public void AddTransition(State _nextState)
     {
-
+        Transition _newTransition = new Transition(Owner, _nextState);
+        Transitions.Add(_newTransition);
     }
     //public abstract void OnEnter(FSM _owner);
     //public abstract void OnUpdate();

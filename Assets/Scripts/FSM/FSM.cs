@@ -70,16 +70,22 @@ public class FSM : MonoBehaviour
         AllStates.Add(new State(this));
     }
 
-    public void AddState(Behaviour _behaviour)
+    public State AddState(Behaviour _behaviour)
     {
         State _newState = new State(this);
         _behaviour.Owner = this;
         _newState.Behaviour = _behaviour;
         AllStates.Add(_newState);
+        return _newState;
     }
 
     public void AddTransition(State _startState, State _endState, Transition _transition)
     {
         Debug.Log("Implement");
+    }
+
+    public void RemoveState(int _index)
+    {
+        AllStates.RemoveAt(_index);
     }
 }

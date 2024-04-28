@@ -3,6 +3,7 @@ public class Transition
     protected FSM owner = null;
     protected State nextState = null;
     public Condition Condition { get; set; }
+    public State NextState => nextState;
     public bool IsValid()
     {
         return Condition.IsConditionVerified();
