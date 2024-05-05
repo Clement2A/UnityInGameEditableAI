@@ -12,10 +12,14 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
     public event Action<StateUI> OnStateSelected = null;
     public event Action<Vector2> OnMouseMove = null;
 
-    [FormerlySerializedAs("UIState")] [SerializeField]
+    [SerializeField]
     StateUI uiState = null;
     [SerializeField]
+    TransitionUI transitionUI = null;
+    [SerializeField]
     Button quitButton = null;
+    [SerializeField]
+    Button quitTransitionMenuButton = null;
     [SerializeField]
     Button addStateButton = null;
     [SerializeField]
@@ -30,23 +34,27 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
     TMP_InputField aiNameInput = null;
     [SerializeField]
     StateSelectionMenu stateSelectionMenu = null;
-    [SerializeField]
-    TransitionUI transitionUIPrefab = null;
+    [FormerlySerializedAs("transitionUIPrefab")] [SerializeField]
+    StateLinkUI stateLinkUIPrefab = null;
+    [SerializeField] 
+    RectTransform transitionMenu = null;
 
     EditableAI currentAI = null;
 
     EditableAI CurrentAI => currentAI;
     StateUI CurrentHoveredState { get; set; } = null;
-    TransitionUI CurrentTransition { get; set; } = null;
+    StateLinkUI CurrentStateLink { get; set; } = null;
 
     void Start()
     {
         gameObject.SetActive(false);
         SubscribeToAIOnClick();
         quitButton.onClick.AddListener(HideUI);
+        quitTransitionMenuButton.onClick.AddListener(QuitTransitionMenu);
         aiNameInput.onDeselect.AddListener(RenameCurrentAI);
         addStateButton.onClick.AddListener(ShowStateSelectionMenu);
         startFsmButton.onClick.AddListener(StartFsm);
+        transitionMenu.gameObject.SetActive(false);
     }
 
     void Update()
@@ -111,6 +119,11 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
         OnStateSelected = null;
     }
 
+    void QuitTransitionMenu()
+    {
+        transitionMenu.gameObject.SetActive(false);
+    }
+
     void RenameCurrentAI(string _name)
     {
         currentAI.name = _name;
@@ -145,7 +158,6 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
         _ssm.GetComponent<RectTransform>().pivot = Vector2.zero;
         Vector2 _halfButtonSize = addStateButton.GetComponent<RectTransform>().sizeDelta / 2;
         _ssm.transform.position = addStateButton.transform.position /* + new Vector3(_halfButtonSize.x, _halfButtonSize.y, 0)*/;
-        Debug.Log(_halfButtonSize);
         _ssm.OnBehaviourSelected += AddStateToAI;
     }
 
@@ -168,22 +180,22 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
 
     void StartTransitionCreation(StateUI _startState)
     {
-        CurrentTransition = Instantiate(transitionUIPrefab, lineContainer.transform, false);
-        CurrentTransition.SetFSMUI(this);
-        CurrentTransition.SetFirstState(_startState);
+        CurrentStateLink = Instantiate(stateLinkUIPrefab, lineContainer.transform, false);
+        CurrentStateLink.SetFSMUI(this);
+        CurrentStateLink.SetFirstState(_startState);
     }
 
     void TryCreateTransition(StateUI _state)
     {
         if (CurrentHoveredState != null)
         {
-            CurrentTransition.SetLastState(CurrentHoveredState);
-            _state.LinkedState.AddTransition(CurrentHoveredState.LinkedState);
+            CurrentStateLink.SetLastState(CurrentHoveredState);
+            CurrentStateLink.TransitionButton.OnButtonClick += OpenTransitionMenu;
         }
         else
         {
-            Destroy(CurrentTransition.gameObject);
-            CurrentTransition = null;
+            Destroy(CurrentStateLink.gameObject);
+            CurrentStateLink = null;
             Debug.LogWarning("Cannot create transition");
             OnMouseMove = null;
         }
@@ -191,10 +203,17 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
 
     void CreateFullTransition(StateUI _startState, StateUI _endState)
     {
-        CurrentTransition = Instantiate(transitionUIPrefab, lineContainer.transform, false);
-        CurrentTransition.SetFSMUI(this);
-        CurrentTransition.SetFirstState(_startState);
-        CurrentTransition.SetLastState(_endState);
+        CurrentStateLink = Instantiate(stateLinkUIPrefab, lineContainer.transform, false);
+        CurrentStateLink.SetFSMUI(this);
+        CurrentStateLink.SetFirstState(_startState);
+        CurrentStateLink.SetLastState(_endState);
+        CurrentStateLink.TransitionButton.OnButtonClick += OpenTransitionMenu;
+    }
+
+    void OpenTransitionMenu()
+    {
+        Debug.Log("Open");
+        transitionMenu.gameObject.SetActive(true);
     }
 
     public void OnPointerMove(PointerEventData _eventData)

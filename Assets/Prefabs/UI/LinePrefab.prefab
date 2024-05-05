@@ -80,7 +80,7 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Positions:
-  - {x: 92.45, y: 291.72, z: 0}
+  - {x: 92.45, y: 164.92, z: 0}
   - {x: 50.83, y: 16.02, z: 0}
   m_Parameters:
     serializedVersion: 3
@@ -150,3 +150,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 8033243707314191548}
+  transitionButton: {fileID: 5688887021399467887, guid: 0a9404021ed00b1499693e54c0935cf7, type: 3}

@@ -253,8 +253,9 @@ GameObject:
   - component: {fileID: 1320081883908433346}
   - component: {fileID: 1320081883908433345}
   - component: {fileID: 1320081883908433344}
+  - component: {fileID: 5509334887239035080}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: State Scroll View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -351,6 +352,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5509334887239035080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1320081883908433350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21bd217cebd8d404c8d03b1022258878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allBehaviour:
+  - {fileID: 11400000, guid: 95fcca050c6f5344398bc69a1468408b, type: 2}
+  - {fileID: 11400000, guid: 9d114c14c75231f43a58074d1f6a3557, type: 2}
+  buttonTemplate: {fileID: 8203561524140319112, guid: d77010108926c5e48aba1978d61b24bb, type: 3}
+  buttonContainer: {fileID: 1320081884481977999}
 --- !u!1 &1320081884194434531
 GameObject:
   m_ObjectHideFlags: 0
