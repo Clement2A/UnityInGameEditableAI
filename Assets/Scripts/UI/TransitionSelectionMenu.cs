@@ -25,7 +25,8 @@ public class TransitionSelectionMenu : MonoBehaviour
 
     void CreateTransition(Condition _behaviour)
     {
-        OnConditionSelected.Invoke(_behaviour);
+        Condition _instanceBehaviour = Instantiate(_behaviour);
+        OnConditionSelected.Invoke(_instanceBehaviour);
     }
 
     void Update()
