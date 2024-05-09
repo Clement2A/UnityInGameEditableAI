@@ -77,5 +77,15 @@ public class StateLinkUI : MonoBehaviour
         stateOne.OnStateMovedContinous += (_pos) => UpdateTransitionUILocation();
         stateTwo.OnStateMovedContinous += (_pos) => UpdateTransitionUILocation();
         transitionButton.link = this;
+
+        StateOne.OnDeletion += DeleteSelf;
+        stateTwo.OnDeletion += DeleteSelf;
+    }
+
+    void DeleteSelf()
+    {
+        StateOne.OnDeletion -= DeleteSelf;
+        stateTwo.OnDeletion -= DeleteSelf;
+        Destroy(gameObject);
     }
 }

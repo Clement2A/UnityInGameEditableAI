@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class State
 {
+    public event Action OnDeletion = null;
     FSM Owner { get; }
     public State(FSM _owner)
     {
@@ -18,11 +19,17 @@ public class State
         _condition.Init();
         _newTransition.Condition = _condition;
         Transitions.Add(_newTransition);
+        _newTransition.OnDeletion += RemoveTransition;
     }
 
     public void RemoveTransition(int _index)
     {
         Transitions.RemoveAt(_index);
+    }
+
+    void RemoveTransition(Transition _transition)
+    {
+        Transitions.RemoveAt(Transitions.IndexOf(_transition));
     }
 
     public void OnEnter(FSM _fsm)
@@ -37,6 +44,11 @@ public class State
         {
             _transition.Condition.Init();
         }
+    }
+
+    public void DeleteState()
+    {
+        OnDeletion?.Invoke();
     }
 
     public void DrawDebug()

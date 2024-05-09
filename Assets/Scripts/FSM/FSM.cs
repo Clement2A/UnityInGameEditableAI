@@ -88,6 +88,12 @@ public class FSM : MonoBehaviour
 
     public void RemoveState(int _index)
     {
+        if (currentState == AllStates[_index])
+        {
+            StopFSM();
+        }
+
+        AllStates[_index].DeleteState();
         AllStates.RemoveAt(_index);
     }
 }

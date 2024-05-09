@@ -84,11 +84,7 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
             StateUI _newState = CreateStateUI(_currState, _currState.Behaviour);
             _newState.OwnRectTransform.offsetMax = _ai.FsmUiData.StatePositions[i];
             _allCheckedStates.Add(_currState);
-        }
-
-        for (int i = 0; i < _ai.Fsm.AllStates.Count; i++)
-        {
-            State _currState = _ai.Fsm.AllStates[i];
+            
             foreach (Transition _currTransition in _currState.Transitions)
             {
                 State _nextState = _currTransition.NextState;
@@ -113,6 +109,9 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
         {
             Destroy(_child.gameObject);
         }
+
+        transitionMenu.CloseWindow();
+        
         OnStateSelected = null;
     }
 
@@ -141,6 +140,7 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
 
     void DeleteState(int _stateIndex)
     {
+        Debug.Log("Remove State");
         currentAI.RemoveState(_stateIndex);
     }
 

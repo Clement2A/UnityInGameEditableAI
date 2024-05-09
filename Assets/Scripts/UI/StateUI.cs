@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class StateUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    public event Action OnDeletion = null;
     public event Action<int, Vector2> OnStateMoved = null;
     public event Action<Vector2> OnStateMovedContinous = null;
     public event Action<StateUI> OnStateSelected = null;
@@ -147,6 +148,8 @@ public class StateUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragH
     void DeleteState()
     {
         OnStateDeleted.Invoke(transform.GetSiblingIndex());
+        OnDeletion?.Invoke();
+        Debug.Log("OIII destroy");
         Destroy(gameObject);
     }
 

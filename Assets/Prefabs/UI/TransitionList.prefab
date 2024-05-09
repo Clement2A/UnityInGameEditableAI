@@ -156,8 +156,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -10}
-  m_SizeDelta: {x: -20, y: 50}
+  m_AnchoredPosition: {x: -30, y: -10}
+  m_SizeDelta: {x: -80, y: 50}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7822086054285680059
 CanvasRenderer:
@@ -352,6 +352,8 @@ MonoBehaviour:
   addTransitionButton: {fileID: 8033881525064775017}
   transitionText: {fileID: 4275690058445593391}
   transitionSelectionMenu: {fileID: 7749480198160816646}
+  activeTransitionContainer: {fileID: 6491736866341062027}
+  transitionListElementPrefab: {fileID: 981665549597232941, guid: 90e4416df003e3b468ddb0d99e58e463, type: 3}
 --- !u!1001 &3022548426631517992
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -652,6 +654,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1320081884481977997, guid: 8699e4747a4021e4daa7c5d59a2df546, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320081884481977999, guid: 8699e4747a4021e4daa7c5d59a2df546, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320081884481977999, guid: 8699e4747a4021e4daa7c5d59a2df546, type: 3}
+      propertyPath: m_Padding.m_Left
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320081884481977999, guid: 8699e4747a4021e4daa7c5d59a2df546, type: 3}
+      propertyPath: m_Padding.m_Right
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1320081884481977999, guid: 8699e4747a4021e4daa7c5d59a2df546, type: 3}
+      propertyPath: m_Padding.m_Bottom
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1320081885167975958, guid: 8699e4747a4021e4daa7c5d59a2df546, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -662,6 +684,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8699e4747a4021e4daa7c5d59a2df546, type: 3}
+--- !u!114 &6491736866341062027 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1320081884481977999, guid: 8699e4747a4021e4daa7c5d59a2df546, type: 3}
+  m_PrefabInstance: {fileID: 5208016267946556164}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6491736867986382531 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1320081883908433351, guid: 8699e4747a4021e4daa7c5d59a2df546, type: 3}

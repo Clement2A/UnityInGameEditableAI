@@ -32,7 +32,7 @@ public class TransitionWindow : MonoBehaviour
         bToATransition.SetupMenu(StateTwo, StateOne);
     }
 
-    void CloseWindow()
+    public void CloseWindow()
     {
         gameObject.SetActive(false);
         StateOne = null;
