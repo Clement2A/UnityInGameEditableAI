@@ -16,16 +16,14 @@ public class ConditionOutsidePlayerDistance : Condition
     public override bool IsConditionVerified()
     {
         Vector3 _playerPosition = PlayerSystem.Instance.Player.transform.position;
-        float _distSq = Mathf.Pow(_playerPosition.z + Owner.transform.position.z, 2) +
-                        Mathf.Pow(_playerPosition.y + Owner.transform.position.y, 2);
+        float _distSq = Mathf.Pow(_playerPosition.z - Owner.transform.position.z, 2) +
+                        Mathf.Pow(_playerPosition.x - Owner.transform.position.x, 2);
         return _distSq > Mathf.Pow(distance, 2);
     }
 
     public override void DrawDebug()
     {
-        Vector3 _playerPosition = PlayerSystem.Instance.Player.transform.position;
-        float _dist = Mathf.Sqrt(Mathf.Pow(_playerPosition.z + Owner.transform.position.z, 2) +
-                      Mathf.Pow(_playerPosition.y + Owner.transform.position.y, 2));
-        Handles.Label(Owner.transform.position, "Target dist is " + distance + "\nWe're at " + _dist);
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(Owner.transform.position, distance);
     }
 }

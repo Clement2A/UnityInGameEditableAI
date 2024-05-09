@@ -23,10 +23,8 @@ public class BehaviourFollowPlayer : Behaviour
 
     public override void OnEnter(FSM _owner)
     {
-        Debug.Log(Owner);
         aiStats = Owner.GetComponent<StatsComponent>().Stats;
         playerTransform = PlayerSystem.Instance.Player.transform;
-        Debug.Log("Entered follow");
     }
 
     public override void OnExit()
@@ -37,6 +35,5 @@ public class BehaviourFollowPlayer : Behaviour
     public override void OnUpdate()
     {
         Owner.transform.position = Vector3.MoveTowards(Owner.transform.position, playerTransform.position, aiStats.speed * Time.deltaTime);
-        Debug.Log("Following");
     }
 }
