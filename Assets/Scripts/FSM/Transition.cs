@@ -13,4 +13,9 @@ public class Transition
         owner = _owner;
         nextState = _nextState;
     }
+
+    public void DrawDebug()
+    {
+        Condition?.DrawDebug();
+    }
 }

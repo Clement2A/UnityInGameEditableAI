@@ -5,12 +5,12 @@ using UnityEngine.EventSystems;
 
 public class TransitionButton : MonoBehaviour, IPointerClickHandler
 {
-    public event Action OnButtonClick = null;
+    public event Action<State, State> OnButtonClick = null;
+    public StateLinkUI link = null;
     TMP_Text transitionText = null;
     
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Click");
-        OnButtonClick?.Invoke();
+        OnButtonClick?.Invoke(link.StateOne.LinkedState, link.StateTwo.LinkedState);
     }
 }

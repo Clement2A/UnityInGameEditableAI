@@ -15,11 +15,7 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
     [SerializeField]
     StateUI uiState = null;
     [SerializeField]
-    TransitionUI transitionUI = null;
-    [SerializeField]
     Button quitButton = null;
-    [SerializeField]
-    Button quitTransitionMenuButton = null;
     [SerializeField]
     Button addStateButton = null;
     [SerializeField]
@@ -37,7 +33,7 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
     [FormerlySerializedAs("transitionUIPrefab")] [SerializeField]
     StateLinkUI stateLinkUIPrefab = null;
     [SerializeField] 
-    RectTransform transitionMenu = null;
+    TransitionWindow transitionMenu = null;
 
     EditableAI currentAI = null;
 
@@ -50,11 +46,12 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
         gameObject.SetActive(false);
         SubscribeToAIOnClick();
         quitButton.onClick.AddListener(HideUI);
-        quitTransitionMenuButton.onClick.AddListener(QuitTransitionMenu);
         aiNameInput.onDeselect.AddListener(RenameCurrentAI);
         addStateButton.onClick.AddListener(ShowStateSelectionMenu);
         startFsmButton.onClick.AddListener(StartFsm);
         transitionMenu.gameObject.SetActive(false);
+        stateSelectionMenu.gameObject.SetActive(false);
+        stateSelectionMenu.OnBehaviourSelected += AddStateToAI;
     }
 
     void Update()
@@ -119,11 +116,6 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
         OnStateSelected = null;
     }
 
-    void QuitTransitionMenu()
-    {
-        transitionMenu.gameObject.SetActive(false);
-    }
-
     void RenameCurrentAI(string _name)
     {
         currentAI.name = _name;
@@ -154,15 +146,12 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
 
     private void ShowStateSelectionMenu()
     {
-        StateSelectionMenu _ssm = Instantiate(stateSelectionMenu, stateContainer.transform);
-        _ssm.GetComponent<RectTransform>().pivot = Vector2.zero;
-        Vector2 _halfButtonSize = addStateButton.GetComponent<RectTransform>().sizeDelta / 2;
-        _ssm.transform.position = addStateButton.transform.position /* + new Vector3(_halfButtonSize.x, _halfButtonSize.y, 0)*/;
-        _ssm.OnBehaviourSelected += AddStateToAI;
+        stateSelectionMenu.gameObject.SetActive(!stateSelectionMenu.gameObject.activeSelf);
     }
 
     void AddStateToAI(Behaviour _behaviour)
     {
+        stateSelectionMenu.gameObject.SetActive(false);
         Behaviour _instancedBehaviour = Instantiate(_behaviour);
         State _newState = currentAI.AddState(Vector2.zero, _instancedBehaviour);
         CreateStateUI(_newState, _behaviour);
@@ -210,9 +199,9 @@ public class FSMUI : MonoBehaviour, IPointerMoveHandler
         CurrentStateLink.TransitionButton.OnButtonClick += OpenTransitionMenu;
     }
 
-    void OpenTransitionMenu()
+    void OpenTransitionMenu(State _fistState, State _secondState)
     {
-        Debug.Log("Open");
+        transitionMenu.SetStates(_fistState, _secondState);
         transitionMenu.gameObject.SetActive(true);
     }
 

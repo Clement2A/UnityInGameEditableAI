@@ -20,7 +20,6 @@ public class StateSelectionMenu : MonoBehaviour
             Button _newButton = Instantiate(buttonTemplate);
             _newButton.transform.SetParent(buttonContainer.transform, false);
             _newButton.onClick.AddListener(() => CreateState(_behaviour) );
-            _newButton.onClick.AddListener(() => Destroy(gameObject) );
             _newButton.GetComponentInChildren<TMP_Text>().SetText(_behaviour.StateName);
         }
     }

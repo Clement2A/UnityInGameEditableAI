@@ -12,6 +12,9 @@ public class StateLinkUI : MonoBehaviour
     StateUI stateOne = null;
     StateUI stateTwo = null;
 
+    public StateUI StateOne => stateOne;
+    public StateUI StateTwo => stateTwo;
+
     public TransitionButton TransitionButton => transitionButton;
     void Start()
     {
@@ -73,5 +76,6 @@ public class StateLinkUI : MonoBehaviour
         UpdateTransitionUILocation();
         stateOne.OnStateMovedContinous += (_pos) => UpdateTransitionUILocation();
         stateTwo.OnStateMovedContinous += (_pos) => UpdateTransitionUILocation();
+        transitionButton.link = this;
     }
 }

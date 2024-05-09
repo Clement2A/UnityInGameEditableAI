@@ -42,12 +42,13 @@ public class FSM : MonoBehaviour
     {
         currentState?.Behaviour?.OnExit();
         currentState = _newState;
-        currentState?.Behaviour?.OnEnter(this);
+        //currentState?.Behaviour?.OnEnter(this);
+        currentState?.OnEnter(this);
     }
 
     private void OnDrawGizmos()
     {
-        currentState?.Behaviour?.DebugBehaviour();
+        currentState?.DrawDebug();
     }
 
     public void CheckForValidTransition(State _state)
@@ -57,11 +58,17 @@ public class FSM : MonoBehaviour
             Debug.Log("Transition state is null");
             return;
         }    
-        for (int i = 0; i < _state.Transitions.Count; i++)
+        //for (int i = 0; i < _state.Transitions.Count; i++)
+        //{
+        //    if (_state.Transitions[i].IsValid())
+        //        //_state.Transitions[i].CallNext();
+        //        Debug.Log("Implement call next transition");
+        //}
+
+        foreach (Transition _transition in _state.Transitions)
         {
-            if (_state.Transitions[i].IsValid())
-                //_state.Transitions[i].CallNext();
-                Debug.Log("Implement call next transition");
+            if(_transition.IsValid())
+                SetNext(_transition.NextState);
         }
     }
 
@@ -77,11 +84,6 @@ public class FSM : MonoBehaviour
         _newState.Behaviour = _behaviour;
         AllStates.Add(_newState);
         return _newState;
-    }
-
-    public void AddTransition(State _startState, State _endState, Transition _transition)
-    {
-        Debug.Log("Implement");
     }
 
     public void RemoveState(int _index)
