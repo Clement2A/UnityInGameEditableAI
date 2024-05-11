@@ -1027,7 +1027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7615841286284818837, guid: a7d71e2551d5b204099c806ff33f3304, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00093078613
+      value: -0.00035095215
       objectReference: {fileID: 0}
     - target: {fileID: 7615841286539258612, guid: a7d71e2551d5b204099c806ff33f3304, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1334,7 +1334,7 @@ GameObject:
   - component: {fileID: 1599072123}
   - component: {fileID: 1599072129}
   m_Layer: 0
-  m_Name: Ryga
+  m_Name: AI 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1596,7 +1596,7 @@ GameObject:
   - component: {fileID: 2027642831}
   - component: {fileID: 2027642832}
   m_Layer: 0
-  m_Name: Edric
+  m_Name: AI 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
