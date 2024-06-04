@@ -367,6 +367,7 @@ MonoBehaviour:
   allBehaviour:
   - {fileID: 11400000, guid: 95fcca050c6f5344398bc69a1468408b, type: 2}
   - {fileID: 11400000, guid: 9d114c14c75231f43a58074d1f6a3557, type: 2}
+  - {fileID: 11400000, guid: 5af2fa3387442ec49abee63130a8cc97, type: 2}
   buttonTemplate: {fileID: 8203561524140319112, guid: d77010108926c5e48aba1978d61b24bb, type: 3}
   buttonContainer: {fileID: 1320081884481977999}
 --- !u!1 &1320081884194434531
