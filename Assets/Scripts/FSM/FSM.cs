@@ -72,11 +72,6 @@ public class FSM : MonoBehaviour
         }
     }
 
-    public void AddState()
-    {
-        AllStates.Add(new State(this));
-    }
-
     public State AddState(Behaviour _behaviour)
     {
         State _newState = new State(this);
